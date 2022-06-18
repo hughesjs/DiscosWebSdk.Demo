@@ -1,5 +1,6 @@
-using System.Reflection;
+using DiscosWebSdk.Clients;
 using DiscosWebSdk.Models.ResponseModels;
+using DiscosWebSdk.Models.ResponseModels.DiscosObjects;
 using Microsoft.AspNetCore.Components;
 
 namespace DiscosWebSdk.Demo.Blazor.Shared.Components.Common.Cards;
@@ -7,23 +8,19 @@ namespace DiscosWebSdk.Demo.Blazor.Shared.Components.Common.Cards;
 public partial class DiscosEntityCard: ComponentBase
 {
 	[Parameter]
-	[EditorRequired]
-	public DiscosModelBase DiscosModel { get; set; } = null!;
+	public string DiscosId { get; set; }
+	
+	[Inject]
+	private IDiscosClient _discosClient { get; set; }
+	
+	
+	private DiscosModelBase? _discosModel;
 
-	private Dictionary<string, string?> Properties { get; set; } = new();
-
-	protected override void OnInitialized()
+	protected override async Task OnInitializedAsync()
 	{
-		GetValueProperties();
-		base.OnInitialized();
+		_discosModel = await _discosClient.GetSingle<DiscosObject>("1");
+		await base.OnInitializedAsync();
 	}
 
-	private void GetValueProperties()
-	{
-		Type           t     = DiscosModel.GetType();
-		PropertyInfo[] props = t.GetProperties();
-
-		Properties = props.ToDictionary(p => p.Name, p => p.GetValue(DiscosModel)?.ToString());
-	}
 }
 	

@@ -1,19 +1,26 @@
 <MudItem xs="12">
     <MudCard Elevation="25" Class="rounded-lg pb-4">
-        <MudCardHeader>
-            <CardHeaderContent>
-                <MudText Typo="Typo.h5" Align="Align.Center">@DiscosModel.Name</MudText>
-            </CardHeaderContent>
-        </MudCardHeader>
-        <MudCardContent>
-            @foreach (KeyValuePair<string, string?> property in Properties)
-            {
-                @if (property.Value is not null)
-                {
-                    <MudText>@($"{property.Key}: {property.Value}")</MudText>
-                }
-            }
-        </MudCardContent>
+        @if (_discosModel is not null)
+        {
+            <MudCardHeader>
+                <CardHeaderContent>
+                    <MudText Typo="Typo.h5" Align="Align.Center">@_discosModel.Name</MudText>
+                </CardHeaderContent>
+            </MudCardHeader>
+            <MudCardContent>
+                @* TODO *@
+            </MudCardContent>
+        }
+        else
+        {
+            <MudCardHeader>
+                <MudSkeleton Width="50%"/>
+            </MudCardHeader>
+            <MudCardContent>
+                <MudSkeleton Width="30%" Height="42px;" />
+                <MudSkeleton Width="80%" />
+                <MudSkeleton Width="100%" />
+            </MudCardContent>
+        }
     </MudCard>
 </MudItem>
-
