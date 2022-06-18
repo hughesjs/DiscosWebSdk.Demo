@@ -4,11 +4,12 @@
 	  <TargetFramework>net6.0</TargetFramework>
 	  <Nullable>enable</Nullable>
 	  <ImplicitUsings>enable</ImplicitUsings>
+	  <LangVersion>default</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DISCOSweb-Sdk" Version="1.0.1-beta" />
-    <PackageReference Include="MudBlazor" Version="6.0.9" />
+    <PackageReference Include="DiscosWebSdk" Version="1.1.1" />
+    <PackageReference Include="MudBlazor" Version="6.0.10" />
   </ItemGroup>
 
   <ItemGroup>

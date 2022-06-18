@@ -1,11 +1,8 @@
-using System.Reflection;
-using DISCOSweb_Sdk.Clients;
-using DISCOSweb_Sdk.Models.ResponseModels;
-using DISCOSweb_Sdk.Models.ResponseModels.DiscosObjects;
-using DISCOSweb_Sdk.Models.ResponseModels.FragmentationEvent;
+using DiscosWebSdk.Clients;
+using DiscosWebSdk.Models.ResponseModels.FragmentationEvent;
 using Microsoft.AspNetCore.Components;
 
-namespace DISCOSweb_demo_app.Pages.SimpleFetching;
+namespace DiscosWebSdk.Demo.Pages.SimpleFetching;
 
 public partial class GetMultiple
 {

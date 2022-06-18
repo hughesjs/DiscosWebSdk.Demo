@@ -1,6 +1,4 @@
-using DISCOSweb_Sdk.DependencyInjection;
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
+using DiscosWebSdk.DependencyInjection;
 using MudBlazor.Services;
 
 var builder = WebApplication.CreateBuilder(args);
