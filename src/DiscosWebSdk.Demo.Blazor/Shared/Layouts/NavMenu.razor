@@ -1,5 +1,10 @@
 ﻿<MudNavMenu>
-    <MudNavLink Href="" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Home">Home</MudNavLink>
-    <MudNavLink Href="counter" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Add">Counter</MudNavLink>
-    <MudNavLink Href="fetchdata" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.List">Fetch data</MudNavLink>
+    <MudNavGroup Icon="@Icons.Material.TwoTone.Download" Title="Simple Fetching">
+        <MudNavLink Href="simple-fetching/get-single" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Inventory">GetSingle()</MudNavLink>
+        <MudNavLink Href="simple-fetching/get-multiple" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Inventory2">GetMultiple()</MudNavLink>
+    </MudNavGroup>
+    <MudNavGroup Icon="@Icons.Material.TwoTone.QueryBuilder" Title="Query Building">
+        <MudNavLink Href="get-single-w-query" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Inventory">GetSingle()</MudNavLink>
+        <MudNavLink Href="get-multiple-w-query" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Inventory2">GetMultiple()</MudNavLink>
+    </MudNavGroup>
 </MudNavMenu>
