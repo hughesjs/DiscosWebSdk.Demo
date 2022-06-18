@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using MudBlazor;
 
-namespace DiscosWebSdk.Demo.Shared.Components;
+namespace DiscosWebSdk.Demo.Blazor.Shared.Components.Common.Buttons;
 
 public partial class ButtonWithLoadingSpinner: ComponentBase
 {

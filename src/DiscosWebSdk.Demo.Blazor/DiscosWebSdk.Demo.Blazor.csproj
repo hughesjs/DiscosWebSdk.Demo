@@ -14,6 +14,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="Shared\Components\Common\Cards" />
       <Folder Include="Shared\Components\SimpleFetching" />
       <Folder Include="Shared\Services" />
     </ItemGroup>
