@@ -14,13 +14,16 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Shared\Components" />
+      <Folder Include="Shared\Components\SimpleFetching" />
       <Folder Include="Shared\Services" />
     </ItemGroup>
 
     <ItemGroup>
       <Compile Update="Pages\SimpleFetching\GetMultiple.cs">
         <DependentUpon>GetMultiple.razor</DependentUpon>
+      </Compile>
+      <Compile Update="Shared\Components\Common\Buttons\ButtonWithLoadingSpinner.cs">
+        <DependentUpon>ButtonWithLoadingSpinner.razor</DependentUpon>
       </Compile>
     </ItemGroup>
 
