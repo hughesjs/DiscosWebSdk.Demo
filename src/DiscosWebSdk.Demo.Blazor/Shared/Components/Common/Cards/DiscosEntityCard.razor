@@ -1,26 +1,14 @@
+@using DiscosWebSdk.Demo.Blazor.Shared.Components.Common.Wrappers
+
 <MudItem xs="12">
-    <MudCard Elevation="25" Class="rounded-lg pb-4">
-        @if (_discosModel is not null)
-        {
-            <MudCardHeader>
+    <LongLoadMudCard Elevation="25" Class="rounded-lg pb-4" ParameterToWaitFor="_discosModel">
+        <MudCardHeader>
                 <CardHeaderContent>
                     <MudText Typo="Typo.h5" Align="Align.Center">@_discosModel.Name</MudText>
                 </CardHeaderContent>
             </MudCardHeader>
-            <MudCardContent>
-                @* TODO *@
-            </MudCardContent>
-        }
-        else
-        {
-            <MudCardHeader>
-                <MudSkeleton Width="50%"/>
-            </MudCardHeader>
-            <MudCardContent>
-                <MudSkeleton Width="30%" Height="42px;" />
-                <MudSkeleton Width="80%" />
-                <MudSkeleton Width="100%" />
-            </MudCardContent>
-        }
-    </MudCard>
+        <MudCardContent>
+            @* TODO *@
+        </MudCardContent>
+    </LongLoadMudCard>
 </MudItem>

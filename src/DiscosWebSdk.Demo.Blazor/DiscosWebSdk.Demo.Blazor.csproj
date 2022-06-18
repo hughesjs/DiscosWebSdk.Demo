@@ -29,6 +29,9 @@
       <Compile Update="Shared\Components\Common\Cards\DiscosEntityCard.cs">
         <DependentUpon>DiscosEntityCard.razor</DependentUpon>
       </Compile>
+      <Compile Update="Shared\Components\Common\Wrappers\LongLoadMudCard.cs">
+        <DependentUpon>LongLoadMudCard.razor</DependentUpon>
+      </Compile>
     </ItemGroup>
 
 
