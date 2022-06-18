@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="DiscosWebSdk" Version="1.1.1" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.2" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.2" PrivateAssets="all" />
+        <PackageReference Include="MudBlazor" Version="6.0.9" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Shared\Components" />
+      <Folder Include="Shared\Services" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Pages\SimpleFetching\GetMultiple.cs">
+        <DependentUpon>GetMultiple.razor</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
+
+</Project>

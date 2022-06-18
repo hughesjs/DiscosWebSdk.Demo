@@ -2,7 +2,7 @@ using DiscosWebSdk.Clients;
 using DiscosWebSdk.Models.ResponseModels.FragmentationEvent;
 using Microsoft.AspNetCore.Components;
 
-namespace DiscosWebSdk.Demo.Pages.SimpleFetching;
+namespace DiscosWebSdk.Demo.Blazor.Pages.SimpleFetching;
 
 public partial class GetMultiple
 {
