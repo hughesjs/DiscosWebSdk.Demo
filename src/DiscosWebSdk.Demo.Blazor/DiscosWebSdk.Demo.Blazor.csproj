@@ -14,7 +14,6 @@
 
     <ItemGroup>
       <Folder Include="Shared\Components" />
-      <Folder Include="Shared\Layouts" />
       <Folder Include="Shared\Services" />
     </ItemGroup>
 
