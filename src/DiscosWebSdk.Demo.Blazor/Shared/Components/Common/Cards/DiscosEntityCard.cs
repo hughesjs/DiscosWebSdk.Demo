@@ -1,3 +1,4 @@
+using System.Reflection;
 using DiscosWebSdk.Clients;
 using DiscosWebSdk.Models.ResponseModels;
 using DiscosWebSdk.Models.ResponseModels.DiscosObjects;
@@ -8,19 +9,35 @@ namespace DiscosWebSdk.Demo.Blazor.Shared.Components.Common.Cards;
 public partial class DiscosEntityCard: ComponentBase
 {
 	[Parameter]
-	public string DiscosId { get; set; }
+	public string? DiscosId { get; set; }
 	
 	[Inject]
-	private IDiscosClient _discosClient { get; set; }
+	private IDiscosClient? DiscosClient { get; set; }
 	
 	
 	private DiscosModelBase? _discosModel;
 
-	protected override async Task OnInitializedAsync()
+	private Dictionary<string, string> GetSimpleProperties()
 	{
-		_discosModel = await _discosClient.GetSingle<DiscosObject>("1");
-		await base.OnInitializedAsync();
+		if (_discosModel is null) return new();
+		Dictionary<string, string> retDict    = new();
+		Type                       objectType = _discosModel.GetType();
+		IEnumerable<PropertyInfo>  props      = objectType.GetProperties().Where(p => p.Name != "name");
+		foreach (PropertyInfo prop in props)
+		{
+			object? val = prop.GetValue(_discosModel);
+			if (val is not null && !(val is string s && string.IsNullOrEmpty(s)))
+			{
+				retDict.Add(prop.Name, val.ToString() ?? "null");
+			}
+		}
+		return retDict;
 	}
 
+	protected override async Task OnInitializedAsync()
+	{
+		_discosModel = await DiscosClient!.GetSingle<DiscosObject>("1");
+		await base.OnInitializedAsync();
+	}
 }
 	

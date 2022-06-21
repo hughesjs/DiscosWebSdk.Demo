@@ -1,14 +1,17 @@
 @using DiscosWebSdk.Demo.Blazor.Shared.Components.Common.Wrappers
 
 <MudItem xs="12">
-    <LongLoadMudCard Elevation="25" Class="rounded-lg pb-4" ParameterToWaitFor="_discosModel">
+    <LongLoadMudCard Elevation="25" Class="rounded-lg pb-4" ParameterToWaitFor="_discosModel" SkeletonLines="_discosModel?.GetType().GetProperties().Length ?? 5">
         <MudCardHeader>
                 <CardHeaderContent>
-                    <MudText Typo="Typo.h5" Align="Align.Center">@_discosModel.Name</MudText>
+                    <MudText Typo="Typo.h5" Align="Align.Left">@_discosModel?.Name</MudText>
                 </CardHeaderContent>
             </MudCardHeader>
         <MudCardContent>
-            @* TODO *@
+            @foreach (KeyValuePair<string, string> props in GetSimpleProperties())
+            {
+                <MudText>@($"{props.Key}: {props.Value}")</MudText>
+            }
         </MudCardContent>
     </LongLoadMudCard>
 </MudItem>
