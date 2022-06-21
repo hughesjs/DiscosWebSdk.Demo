@@ -9,9 +9,10 @@
             </CardHeaderContent>
         </MudCardHeader>
         <MudCardContent>
-            <MudSkeleton SkeletonType="SkeletonType.Text" Width="20%"/>
-            <MudSkeleton SkeletonType="SkeletonType.Text" Width="20%"/>
-            <MudSkeleton SkeletonType="SkeletonType.Text" Width="20%"/>
+            @for (int i = 0; i < SkeletonLines; i++)
+            {
+                <MudSkeleton SkeletonType="SkeletonType.Text" Width="20%"/>
+            }
         </MudCardContent>
     }
     else
