@@ -31,12 +31,12 @@ builder.Services.AddCors(options =>
 var app = builder.Build();
 app.UseCors("cors");
 
-app.MapGet("/discos-proxy/{*discosRoute}", async (string discosRoute) =>
+app.MapGet("/discos-proxy/{*discosRoute}", async (string discosRoute, HttpContext context) =>
 										   {
-											   DiscosOptions options = app.Configuration.GetSection("DiscosOptions").Get<DiscosOptions>();
 											   HttpClient    client  = new();
-											   client.BaseAddress                         = new(options.DiscosApiUrl);
-											   client.DefaultRequestHeaders.Authorization = new("bearer", options.DiscosApiKey);
+											   client.BaseAddress                         = new(app.Configuration.GetSection("DiscosOptions:DiscosApiUrl").Value);
+											   Console.WriteLine(context.Request.Headers.Authorization);
+											   client.DefaultRequestHeaders.Authorization = new("bearer", context.Request.Headers.Authorization.ToString().Split(' ')[1]);
 											   HttpResponseMessage res = await client.GetAsync(discosRoute);
 											   res.EnsureSuccessStatusCode();
 											   Stream             contentStream = await res.Content.ReadAsStreamAsync();
