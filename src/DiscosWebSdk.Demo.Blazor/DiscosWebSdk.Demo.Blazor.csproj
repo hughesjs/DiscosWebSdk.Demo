@@ -8,7 +8,7 @@
 
     <ItemGroup>
         <PackageReference Include="AutoFixture" Version="4.17.0" />
-        <PackageReference Include="DiscosWebSdk" Version="1.3.0" />
+        <PackageReference Include="DiscosWebSdk" Version="1.3.1" />
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.6" />
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.6" PrivateAssets="all" />
         <PackageReference Include="MudBlazor" Version="6.0.9" />
@@ -16,7 +16,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Shared\Components\SimpleFetching" />
       <Folder Include="Shared\Services" />
     </ItemGroup>
 
@@ -32,6 +31,12 @@
       </Compile>
       <Compile Update="Shared\Components\Common\Wrappers\LongLoadMudCard.cs">
         <DependentUpon>LongLoadMudCard.razor</DependentUpon>
+      </Compile>
+      <Compile Update="Shared\Components\SimpleFetching\Forms\SimpleFetchForm.cs">
+        <DependentUpon>SimpleFetchForm.razor</DependentUpon>
+      </Compile>
+      <Compile Update="Pages\SimpleFetching\GetSingle.cs">
+        <DependentUpon>GetSingle.razor</DependentUpon>
       </Compile>
     </ItemGroup>
 
