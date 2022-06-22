@@ -1,4 +1,5 @@
 using System.Reflection;
+using DiscosWebSdk.Extensions;
 using DiscosWebSdk.Models.ResponseModels;
 
 namespace DiscosWebSdk.Demo.Blazor.Shared.Services;
@@ -10,7 +11,7 @@ public class DiscosModelViewService: IDiscosModelViewService
 		if (discosModel is null) return new();
 		Dictionary<string, string> retDict    = new();
 		Type                       objectType = discosModel.GetType();
-		IEnumerable<PropertyInfo>  props      = objectType.GetProperties().Where(p => p.Name != "name");
+		IEnumerable<PropertyInfo>  props      = objectType.GetProperties().Where(p => p.Name != "name" && !p.PropertyType.IsDiscosModel());
 		foreach (PropertyInfo prop in props)
 		{
 			object? val = prop.GetValue(discosModel);
