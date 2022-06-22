@@ -3,6 +3,7 @@ using DiscosWebSdk.Clients;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using DiscosWebSdk.Demo.Blazor;
+using DiscosWebSdk.Demo.Blazor.Shared.Services;
 using DiscosWebSdk.Fixtures.AutoFixture.Customizations;
 using DiscosWebSdk.Models.ResponseModels.DiscosObjects;
 using MudBlazor.Services;
@@ -29,6 +30,7 @@ async Task<DiscosObject> GetDiscosObject(CallInfo _)
 	return fixture.Create<DiscosObject>();
 }
 
+builder.Services.AddTransient<IDiscosModelViewService, DiscosModelViewService>();
 builder.Services.AddScoped(_ => new HttpClient {BaseAddress = new(builder.HostEnvironment.BaseAddress)});
 builder.Services.AddMudServices();
 

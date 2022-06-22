@@ -10,7 +10,7 @@
                 </CardHeaderContent>
             </MudCardHeader>
         <MudCardContent>
-            @foreach (KeyValuePair<string, string> props in GetSimpleProperties())
+            @foreach (KeyValuePair<string, string> props in ModelViewService?.GetSimpleProperties(DiscosModel) ?? new())
             {
                 <MudText GutterBottom="true">@($"{props.Key}: {props.Value}")</MudText>
             }
