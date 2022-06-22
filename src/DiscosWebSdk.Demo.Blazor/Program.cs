@@ -3,23 +3,34 @@ using DiscosWebSdk.Clients;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using DiscosWebSdk.Demo.Blazor;
+using DiscosWebSdk.Demo.Blazor.Shared.Services;
 using DiscosWebSdk.Fixtures.AutoFixture.Customizations;
 using DiscosWebSdk.Models.ResponseModels.DiscosObjects;
 using MudBlazor.Services;
 using NSubstitute;
+using NSubstitute.Core;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
-var     client  = Substitute.For<IDiscosClient>();
 Fixture fixture = new();
 fixture.Customize(new DiscosModelFixtureCustomizationNoLinks());
-DiscosObject obj     = fixture.Create<DiscosObject>();
-client.GetSingle<DiscosObject>(Arg.Any<string>()).Returns(Task.Delay(5000).ContinueWith(_ => obj));
 
-builder.Services.AddTransient(_ => client);
+builder.Services.AddTransient(_ =>
+							  {
+								  IDiscosClient client = Substitute.For<IDiscosClient>();
+								  client.GetSingle<DiscosObject>(Arg.Any<string>()).Returns(GetDiscosObject);
+								  return client;
+							  });
 
+async Task<DiscosObject> GetDiscosObject(CallInfo _)
+{
+	await Task.Delay(Random.Shared.Next(1000, 5000));
+	return fixture.Create<DiscosObject>();
+}
+
+builder.Services.AddTransient<IDiscosModelViewService, DiscosModelViewService>();
 builder.Services.AddScoped(_ => new HttpClient {BaseAddress = new(builder.HostEnvironment.BaseAddress)});
 builder.Services.AddMudServices();
 

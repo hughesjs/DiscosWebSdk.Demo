@@ -10,5 +10,8 @@ public partial class LongLoadMudCard : MudCard
 	public object? ParameterToWaitFor { get; set; }
 
 	[Parameter]
+	public bool Started { get; set; } = true;
+
+	[Parameter]
 	public int SkeletonLines { get; set; } = 5;
 }

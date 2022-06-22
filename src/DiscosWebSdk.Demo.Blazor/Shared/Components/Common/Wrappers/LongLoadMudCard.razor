@@ -1,23 +1,25 @@
 @inherits MudCard
 
 <MudCard Elevation="Elevation" Class="Class">
-    @if(ParameterToWaitFor is null)
+    @if (Started)
     {
-        <MudCardHeader>
-            <CardHeaderContent>
-                <MudSkeleton SkeletonType="SkeletonType.Text" Width="40%"/>
-            </CardHeaderContent>
-        </MudCardHeader>
-        <MudCardContent>
-            @for (int i = 0; i < SkeletonLines; i++)
-            {
-                <MudSkeleton SkeletonType="SkeletonType.Text" Width="20%"/>
-            }
-        </MudCardContent>
+        @if (ParameterToWaitFor is null)
+        {
+            <MudCardHeader>
+                <CardHeaderContent>
+                    <MudSkeleton SkeletonType="SkeletonType.Text" Width="40%"/>
+                </CardHeaderContent>
+            </MudCardHeader>
+            <MudCardContent>
+                @for (int i = 0; i < SkeletonLines; i++)
+                {
+                    <MudSkeleton SkeletonType="SkeletonType.Text" Width="20%"/>
+                }
+            </MudCardContent>
+        }
+        else
+        {
+            @ChildContent
+        }
     }
-    else
-    {
-        @ChildContent
-    }
-    
 </MudCard>

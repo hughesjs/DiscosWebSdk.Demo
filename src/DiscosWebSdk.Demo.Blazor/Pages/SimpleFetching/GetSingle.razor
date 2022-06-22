@@ -1,2 +1,16 @@
 @page "/simple-fetching/get-single"
-<h1>AGH!</h1>
+@using DiscosWebSdk.Demo.Blazor.Shared.Components.SimpleFetching.Forms
+@using DiscosWebSdk.Demo.Blazor.Shared.Components.Common.Cards
+
+<MudContainer Class="pb-10">
+    <MudText Typo="Typo.h3" GutterBottom="true">Simple Single Fetch</MudText>
+    <MudText Class="mb-8">Fetch a single object with no query parameters</MudText>
+    <MudGrid>
+        <MudItem xs="12" md="5">
+            <SimpleFetchForm FormSubmitted="LoadData" Loading="_loading"/>
+        </MudItem>
+        <MudItem xs="12" md="7">
+            <DiscosEntityCard Started="_started" DiscosModel="_model"/>
+        </MudItem>
+    </MudGrid>
+</MudContainer>
