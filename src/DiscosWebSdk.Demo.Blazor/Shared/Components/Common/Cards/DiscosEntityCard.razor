@@ -1,7 +1,9 @@
 @using DiscosWebSdk.Demo.Blazor.Shared.Components.Common.Wrappers
 
+@inherits LongLoadMudCard
+
 <MudItem xs="12">
-    <LongLoadMudCard Elevation="25" Class="rounded-lg pa-4" ParameterToWaitFor="DiscosModel" SkeletonLines="DiscosModel?.GetType().GetProperties().Length ?? 5">
+    <LongLoadMudCard Elevation="25" Class="rounded-lg pa-4" Started="Started" ParameterToWaitFor="DiscosModel" SkeletonLines="DiscosModel?.GetType().GetProperties().Length ?? 5">
         <MudCardHeader>
                 <CardHeaderContent>
                     <MudText Typo="Typo.h5" Align="Align.Left">@DiscosModel?.Name</MudText>

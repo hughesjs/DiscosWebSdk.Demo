@@ -13,10 +13,12 @@ public partial class GetSingle : ComponentBase
 
 	private bool             _loading;
 	private DiscosModelBase? _model;
+	private bool             _started;
 
 	private async Task LoadData(SimpleFetchFormData data)
 	{
 		if (Client == null) return;
+		_started = true;
 		_loading = true;
 		_model   = await Client.GetSingle<DiscosObject>(data.ObjectId);
 		_loading = false;
