@@ -11,7 +11,7 @@ public class DiscosModelViewService: IDiscosModelViewService
 		if (discosModel is null) return new();
 		Dictionary<string, string> retDict    = new();
 		Type                       objectType = discosModel.GetType();
-		IEnumerable<PropertyInfo>  props      = objectType.GetProperties().Where(p => p.Name != "name" && !p.PropertyType.IsDiscosModel());
+		IEnumerable<PropertyInfo>  props      = objectType.GetProperties().Where(p => p.Name != "Name" && !p.PropertyType.IsDiscosModel());
 		foreach (PropertyInfo prop in props)
 		{
 			object? val = prop.GetValue(discosModel);
