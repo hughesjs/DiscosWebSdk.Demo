@@ -20,7 +20,7 @@ public partial class GetSingle : ComponentBase
 		if (Client == null) return;
 		_started = true;
 		_loading = true;
-		_model   = await Client.GetSingle<DiscosObject>(data.ObjectId);
+		_model   = await Client.GetSingle(data.ObjectType, data.ObjectId);
 		_loading = false;
 	}
 
