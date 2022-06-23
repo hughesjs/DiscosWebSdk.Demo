@@ -13,17 +13,17 @@
  */
 
 
+using System.Net;
+using System.Net.Http.Headers;
+
 var builder = WebApplication.CreateBuilder(args);
 builder.Configuration.AddJsonFile("appsettings.json")
 	   .AddEnvironmentVariables();
 builder.Services.AddCors(options =>
-				 {
-					 options.AddPolicy(name: "cors",
-									   policy =>
-									   {
-										   policy.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
-									   });
-				 });
+						 {
+							 options.AddPolicy(name: "cors",
+											   policy => { policy.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin(); });
+						 });
 
 
 var app = builder.Build();
@@ -31,11 +31,26 @@ app.UseCors("cors");
 
 app.MapGet("/discos-proxy/{*discosRoute}", async (string discosRoute, HttpContext context) =>
 										   {
-											   HttpClient    client  = new();
+											   HttpClient client = new();
 											   client.BaseAddress                         = new(app.Configuration.GetSection("DiscosOptions:DiscosApiUrl").Value);
-											   Console.WriteLine(context.Request.Headers.Authorization);
 											   client.DefaultRequestHeaders.Authorization = new("bearer", context.Request.Headers.Authorization.ToString().Split(' ')[1]);
 											   HttpResponseMessage res = await client.GetAsync(discosRoute);
+											   while (!res.IsSuccessStatusCode) // This is actually done in the SDK but CBA to forward retry headers for now
+											   {
+											    if (res.StatusCode is not HttpStatusCode.TooManyRequests or HttpStatusCode.BadGateway) break; // Don't retry on these
+											    if (res.StatusCode is HttpStatusCode.TooManyRequests)
+											    {
+											     RetryConditionHeaderValue? retryAfter = res.Headers.RetryAfter;
+											     Console.WriteLine($"Hit rate limit. Waiting for {retryAfter.Delta.Value.TotalSeconds}s...");
+											     await Task.Delay(retryAfter.Delta.Value);
+											    }
+											    else
+											    {
+											     await Task.Delay(5000);
+											    }
+											    res = await client.GetAsync(discosRoute);
+											   }
+											   
 											   res.EnsureSuccessStatusCode();
 											   Stream             contentStream = await res.Content.ReadAsStreamAsync();
 											   using StreamReader reader        = new(contentStream);
