@@ -1,0 +1,19 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "https://discosweb.esoc.esa.int",
+          "Port": 443
+        }
+      ],
+      "UpstreamPathTemplate": "/{everything}",
+      "UpstreamHttpMethod": [ "Get" ]
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "https://localhost:5002"
+  }
+}
