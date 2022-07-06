@@ -5,7 +5,7 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "https://discosweb.esoc.esa.int",
+          "Host": "discosweb.esoc.esa.int",
           "Port": 443
         }
       ],
@@ -14,6 +14,6 @@
     }
   ],
   "GlobalConfiguration": {
-    "BaseUrl": "https://localhost:5002"
+    "BaseUrl": "https://localhost:5002/"
   }
 }
