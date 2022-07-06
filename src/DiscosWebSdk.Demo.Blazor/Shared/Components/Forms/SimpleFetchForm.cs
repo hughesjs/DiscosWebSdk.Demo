@@ -1,11 +1,10 @@
-using DiscosWebSdk.Clients;
 using DiscosWebSdk.Demo.Blazor.Shared.Models.FormData;
 using DiscosWebSdk.Demo.Blazor.Shared.Models.Misc;
 using DiscosWebSdk.Models.ResponseModels.DiscosObjects;
 using Microsoft.AspNetCore.Components;
 using MudBlazor;
 
-namespace DiscosWebSdk.Demo.Blazor.Shared.Components.SimpleFetching.Forms;
+namespace DiscosWebSdk.Demo.Blazor.Shared.Components.Forms;
 
 public partial class SimpleFetchForm : MudForm
 {
@@ -22,6 +21,6 @@ public partial class SimpleFetchForm : MudForm
 	private void Submit()
 	{
 		if (!_isSuccess) return;
-		FormSubmitted.InvokeAsync(new() {ObjectId = _objectId, ObjectType = _selectedType.Type});
+		FormSubmitted.InvokeAsync(new(_objectId, _selectedType.Type));
 	}
 }

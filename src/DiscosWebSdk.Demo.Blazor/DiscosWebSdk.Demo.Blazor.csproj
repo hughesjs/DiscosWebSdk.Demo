@@ -35,10 +35,17 @@
       <Compile Update="Pages\SimpleFetching\GetSingle.cs">
         <DependentUpon>GetSingle.razor</DependentUpon>
       </Compile>
+      <Compile Update="Shared\Components\Forms\MultipleFetchForm.cs">
+        <DependentUpon>MultipleFetchForm.razor</DependentUpon>
+      </Compile>
     </ItemGroup>
 
     <ItemGroup>
       <_ContentIncludedByDefault Remove="wwwroot\sample-data\weather.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <AdditionalFiles Include="Shared\Components\Forms\SimpleFetchForm.razor" />
     </ItemGroup>
 
 

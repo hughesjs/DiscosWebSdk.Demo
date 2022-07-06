@@ -1,16 +1,16 @@
-@using System.Reflection
-@using DiscosWebSdk.Extensions
+@namespace DiscosWebSdk.Demo.Blazor.Shared.Components.Forms
+
+@using Microsoft.AspNetCore.Components
 @using DiscosWebSdk.Models.ResponseModels.DiscosObjects
-@using DiscosWebSdk.Demo.Blazor.Shared.Components.Common.Buttons
+@using DiscosWebSdk.Extensions
 @using DiscosWebSdk.Demo.Blazor.Shared.Models.Misc
-@namespace DiscosWebSdk.Demo.Blazor.Shared.Components.SimpleFetching.Forms
+@using DiscosWebSdk.Demo.Blazor.Shared.Components.Common.Buttons
 
 @inherits MudForm
 
 <MudPaper Class="pa-4">
     <MudForm @bind-IsValid="@_isSuccess" @bind-Errors="@Errors">
         <MudText Class="H1">DISCOS Object Selection</MudText>
-        <MudTextField T="string" Label="Object Id" Required="true" ErrorText="DISCOS Object Id is Required" Variant="@Variant.Text" @bind-Value="@_objectId"/>
         <MudSelect @bind-Value="@_selectedType" Label="Object Type" Variant="@Variant.Filled" AnchorOrigin="@Origin.BottomCenter">
             @foreach (Type t in typeof(DiscosObject).Assembly.GetTypes().Where(t => t.IsDiscosModel()))
             {
@@ -28,6 +28,5 @@
                 Fetch!
             </ButtonWithLoadingSpinner>
         </div>
-
     </MudForm>
 </MudPaper>

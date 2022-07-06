@@ -1,0 +1,33 @@
+@using DiscosWebSdk.Extensions
+@using DiscosWebSdk.Models.ResponseModels.DiscosObjects
+@using DiscosWebSdk.Demo.Blazor.Shared.Components.Common.Buttons
+@using DiscosWebSdk.Demo.Blazor.Shared.Models.Misc
+
+@namespace DiscosWebSdk.Demo.Blazor.Shared.Components.Forms
+@inherits MudForm
+
+
+<MudPaper Class="pa-4">
+    <MudForm @bind-IsValid="@_isSuccess" @bind-Errors="@Errors">
+        <MudText Class="H1">DISCOS Object Selection</MudText>
+        <MudTextField T="string" Label="Object Id" Required="true" ErrorText="DISCOS Object Id is Required" Variant="@Variant.Text" @bind-Value="@_objectId"/>
+        <MudSelect @bind-Value="@_selectedType" Label="Object Type" Variant="@Variant.Filled" AnchorOrigin="@Origin.BottomCenter">
+            @foreach (Type t in typeof(DiscosObject).Assembly.GetTypes().Where(t => t.IsDiscosModel()))
+            {
+                <MudSelectItem T="TypeWrapper" Value="new TypeWrapper(t)"/>
+            }
+        </MudSelect>
+        <div class="pt-4">
+            <ButtonWithLoadingSpinner Variant="@Variant.Filled"
+                                      Color="@Color.Primary"
+                                      Disabled="@(!_isSuccess && !Loading)"
+                                      Class="ml-auto"
+                                      OnClick="Submit"
+                                      LoadingText="Loading..."
+                                      Loading="Loading">
+                Fetch!
+            </ButtonWithLoadingSpinner>
+        </div>
+
+    </MudForm>
+</MudPaper>
